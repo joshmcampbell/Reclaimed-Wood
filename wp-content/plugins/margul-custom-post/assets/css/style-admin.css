@@ -1,0 +1,154 @@
+/*Admin List Payments Styles*/
+.post-type-nav_payments .wp-list-table #ID {
+	width: 5%;
+}
+
+.post-type-nav_payments .wp-list-table #title {
+	width: 60%;
+}
+
+
+/*Single Payment Page Styles*/
+#tagsdiv-payment_options,
+#slugdiv {
+	display: none;
+}
+
+/*Settings Page Styles*/
+.np-settings {
+	margin: 20px 0px 20px 0px;
+	width: 80%;
+	background-color: #fff;
+	padding-bottom: 2px;
+}
+
+.np-settings .np-heading {
+	width: 95%;
+	display: block;
+	background-color: #2EA2CC;
+	border-bottom: 3px solid #0074A2;
+	padding: 15px 30px;
+	color: #fff;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.np-settings .np-option-wrapper {
+	margin: 20px 50px 50px 40px;
+}
+
+.np-settings .np-subheading {
+	font-size: 18px;
+	color: #222;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.np-settings .np-content {
+	margin-top: 5px;
+	border-bottom: 1px solid #ccc;
+}
+
+.np-settings .np-content p {
+	font-size: 14px;
+	color: #7e8c8d;
+	font-style: italic;
+}
+
+.np-settings .np-options {
+	list-style-type: none;
+	margin: 0 0 15px 0;
+	padding: 0;
+	display: table;
+	width: 100%;
+}
+
+.np-settings .np-options li {
+	display: table-cell;
+	vertical-align: top;
+}
+
+.np-settings .np-option-title {
+	font-size: 14px;
+	font-weight: bold;
+	padding-left: 20px;
+	width: 20%;
+	padding-top: 10px;
+}
+
+.np-settings .np-option-input {
+	padding-right: 20px;
+	width: 80%;
+}
+
+.np-settings .np-content input[type=text],
+.np-settings .np-content input[type=email],
+.np-settings .np-content .text-area {
+	background: #ecf0f1;
+	border-radius: 4px;
+	width: 100%;
+	padding: 10px;
+}
+
+.np-settings .np-content .np-radio {
+	margin: 0px 10px 0px 0px;
+	position: relative;
+	top: 10px;
+}
+
+.np-settings input[type=submit] {
+	float: right;
+	margin: 20px;
+	background: #2ea2cc;
+	border-radius: 4px;
+	padding: 10px 30px;
+	color: #fff;
+	border: 0px solid transparent;
+}
+
+.np-settings input[type=submit]:hover {
+	background: #0074a2;
+	cursor: pointer;
+}
+
+.np-settings .email-add {
+	margin-left: 10px;
+}
+
+.np-settings .np-admin-email-input {
+	width: 90% !important;
+}
+
+.np-settings .np-admin-email-delete {
+	margin: 0px 10px;
+	background-color: #EA4B36;
+	color: #fff;
+	padding: 10px;
+	border: 1px solid transparent;
+	font-weight: bold;
+	border-radius: 4px;
+}
+
+.np-settings .np-admin-email-delete:hover {
+	cursor: pointer;
+	background-color: #c33825;
+}
+
+.alert {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+
+.alert-danger {
+	color: #a94442;
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+
+.alert-success {
+	color: #3c763d;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+}
