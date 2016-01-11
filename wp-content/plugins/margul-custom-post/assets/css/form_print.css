@@ -1,0 +1,33 @@
+@media print {
+	body,
+	html {
+		background-color: #fff;
+	}
+
+	input[type=text],
+	textarea,
+	select {
+		width: 100%;
+	}
+
+	textarea {
+		height: 100px;
+	}
+
+	#adminmenuback,
+	#adminmenuwrap,
+	#side-sortables,
+	#chimera_framework_metabox,
+	#wpfooter,
+	#screen-options-link-wrap,
+	.wrap h2:first-child,
+	.update-nag,
+	#slugdiv {
+		display: none;
+	}
+
+	#wpcontent,
+	#poststuff #post-body.columns-2 {
+		margin: 0px;
+	}
+}
