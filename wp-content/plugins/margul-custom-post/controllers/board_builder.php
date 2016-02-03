@@ -3,8 +3,8 @@
 // Initialize the class objects, and add functionality
 
 $post_name = array(
-	'rcw_builder',
-	'Product Builder'
+	'board_builder',
+	'Board Builder'
 );
 $args = array(
 	'menu_position' => 5,
@@ -13,9 +13,9 @@ $args = array(
 );
 
 $postLabelNames = array(
-	'product builder',
-	'Product Builder',
-	'Product Builders'
+	'board builder',
+	'Board Builder',
+	'Board Builders'
 );
 
 $type_labels = array(
@@ -33,7 +33,7 @@ $type_labels = array(
 );
 
 // Post type object is created here, extra functionality should be added through an extended model
-$post_type = new Rcw_Builder($post_name, $args, $type_labels);
+$post_type = new Board_Builder($post_name, $args, $type_labels);
 
 // This sets up metabox fields refer to the docs
 $fields = array(

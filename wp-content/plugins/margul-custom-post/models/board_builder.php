@@ -12,7 +12,7 @@ defined('ABSPATH') OR exit;
 
 //--------------------
 
-class Rcw_Builder extends Cuztom_Post_type {
+class Board_Builder extends Cuztom_Post_type {
 
 
 } // end of class
