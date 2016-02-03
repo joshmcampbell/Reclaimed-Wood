@@ -30,12 +30,12 @@ define('MG_VERSION', 1.2);
 define('MG_URL', get_bloginfo('url'));
 define('MG_REQUEST', $_SERVER['REQUEST_URI']);
 define('MG_ROOT', $_SERVER['DOCUMENT_ROOT']);
-define('MG_PLUGIN', plugins_url('mg-rcw'));
+define('MG_PLUGIN', plugins_url('margul-custom-post-types'));
 define('MG_PLUGIN_DIR', dirname(__FILE__));
-define('MG_IMAGES', NM_PLUGIN.'/assets/images');
-define('MG_CSS', NM_PLUGIN.'/assets/css');
-define('MG_JS', NM_PLUGIN.'/assets/js');
-define('MG_VENDOR', NM_PLUGIN.'/assets/vendor');
+define('MG_IMAGES', MG_PLUGIN.'/assets/images');
+define('MG_CSS', MG_PLUGIN.'/assets/css');
+define('MG_JS', MG_PLUGIN.'/assets/js');
+define('MG_VENDOR', MG_PLUGIN.'/assets/vendor');
 
 // Upload + image
 $uploads = wp_upload_dir();
@@ -43,7 +43,7 @@ define('MG_UPLOADS', $uploads['baseurl']);
 define('MG_UPLOADS_ROOT', $uploads['basedir']);
 
 // Timthumb, this has its own config options in the file
-define('MG_THUMB', NM_PLUGIN.'/assets/timthumb.php');
+define('MG_THUMB', MG_PLUGIN.'/assets/timthumb.php');
 
 // Uninstall, we will loop through these to remove data on uninstall
 $mg_uninstall = array(

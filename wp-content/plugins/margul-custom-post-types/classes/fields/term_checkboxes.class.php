@@ -30,6 +30,7 @@ class Cuztom_Field_Term_Checkboxes extends Cuztom_Field
 	function _output( $value )
 	{
 		$output = '<div class="cuztom-checkboxes-wrap">';
+
 			if( is_array( $this->terms ) )
 			{
 				foreach( $this->terms as $term )
@@ -60,6 +61,8 @@ class Cuztom_Field_Term_Checkboxes extends Cuztom_Field
 	 */
 	function get_taxonomy_terms()
     {
+
         $this->terms = get_terms( $this->args['taxonomy'], $this->options );
+
     }
 }
