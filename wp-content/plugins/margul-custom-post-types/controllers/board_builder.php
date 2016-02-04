@@ -1,23 +1,23 @@
 <?php
-// SEE THE README FOR DOCUMENTATION
-// Initialize the class objects, and add functionality
 
+// Custom Post Type name
 $post_name = array(
 	'board_builder',
 	'Board Builder'
 );
+// The argument for creating the post type. https://codex.wordpress.org/Function_Reference/register_post_type
 $args = array(
 	'menu_position' => 5,
 	'supports'      => array('title'),
 	'has_archive'   => true,
 );
 
+// The labels for the post type.
 $postLabelNames = array(
 	'board builder',
 	'Board Builder',
 	'Board Builders'
 );
-
 $type_labels = array(
 	'name' 					=> sprintf( _x( '%s', 'taxonomy general name', 'cuztom' ), $postLabelNames[2] ),
 	'singular_name' 		=> sprintf( _x( '%s', 'taxonomy singular name', 'cuztom' ), $postLabelNames[1] ),
@@ -32,16 +32,16 @@ $type_labels = array(
 	'menu_name' 			=> sprintf( __( '%s', 'cuztom' ), $postLabelNames[2] )
 );
 
-// Post type object is created here, extra functionality should be added through an extended model
+// Post type object is created here, extra functionality is added through an extended model
 $post_type = new Board_Builder($post_name, $args, $type_labels);
 
-// Accessories Taxonomy
+// Accessories Taxonomy https://codex.wordpress.org/Function_Reference/register_taxonomy
 $tax_name = array(
     'accessories',
     'Accessories',
     'Accessories',
 );
-
+// Labels for the Accessories taxonomy
 $tax_labels = array(
     'name'                  => sprintf( _x( '%s', 'taxonomy general name', 'cuztom' ), $tax_name[2] ),
     'singular_name'         => sprintf( _x( '%s', 'taxonomy singular name', 'cuztom' ), $tax_name[1] ),
@@ -56,12 +56,16 @@ $tax_labels = array(
     'menu_name'             => sprintf( __( '%s', 'cuztom' ), $tax_name[2] )
 );
 
+// Arguments for the accessories taxonomy
 $args = array(
     'hierarchical'     => false,
     'show_ui'          => true
 );
+// Register the taxnomy Accessories
 $taxonomy = register_cuztom_taxonomy( $tax_name, $post_name, $args, $tax_labels);
 
+// This is the data that we are adding to the accessories taxonomy. We are adding the
+// max amount and an image for the accessories.
 $taxonomy->add_term_meta(
     array(
         array(
@@ -79,13 +83,12 @@ $taxonomy->add_term_meta(
     )
 );
 
-// Fonts Taxonomy
+// Fonts Taxonomy with labels
 $tax_name = array(
     'fonts',
     'Fonts',
     'Fonts',
 );
-
 $tax_labels = array(
     'name'                  => sprintf( _x( '%s', 'taxonomy general name', 'cuztom' ), $tax_name[2] ),
     'singular_name'         => sprintf( _x( '%s', 'taxonomy singular name', 'cuztom' ), $tax_name[1] ),
@@ -100,13 +103,14 @@ $tax_labels = array(
     'menu_name'             => sprintf( __( '%s', 'cuztom' ), $tax_name[2] )
 );
 
+// The argments for registering the font taxonomy
 $args = array(
     'hierarchical'     => false,
     'show_ui'          => true
 );
 $taxonomy = register_cuztom_taxonomy( $tax_name, $post_name, $args, $tax_labels);
 
-// This sets up metabox fields refer to the docs
+// This is the data that we are adding for the field.
 $fields = array(
     array(
         'name'          => 'max_board_amount',
@@ -171,7 +175,7 @@ $fields = array(
     )
 );
 
-// Create Metaboxes
+// Create Metabox
 $post_type->add_meta_box(
 	'meta_builder',
 	'Builder Data',
