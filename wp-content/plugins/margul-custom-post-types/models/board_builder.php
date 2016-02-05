@@ -17,11 +17,10 @@ class Board_Builder extends Cuztom_Post_type {
 	// In the database this is the prefix for our post meta
 	private static $prefix = '_meta_builder_';
 
-	/*
-		Function for grabbing the board prices for a customer builder
-
-		@params integer $intID - ID of the board builder post.
-		@returns array - Associative array with the amount and price.
+	/**
+	 * Function for grabbing the board prices for a customer builder
+	 * @param  [integer] $intID [the post ID for the board bilder]
+	 * @return [array]          [containing prices as assoc array's]
 	 */
 	public static function getBoardPrices($intID) {
 		
@@ -45,22 +44,24 @@ class Board_Builder extends Cuztom_Post_type {
 		return $arrPrices;
 	}
 
-	/*
-		Function for grabbing the Text data for a custom builder
-
-		@params integer $intID - ID of the board builder post
-		@returns array - Array with maximum characters and array of available fonts.
+	/**
+	 * function for getting the text data for a board builder post
+	 * @param  [int] $intID [the post ID for the board bilder]
+	 * @return [array]      [Array of font names]
 	 */
 	public static function getTextData($intID) {
 		$arrTextData = array();
 		// Grab the maximum character count post meta
 		$arrTextData['max_character_count'] = (int)get_post_meta((int)$intID, static::$prefix.'max_character_count', true);
-		// Get all the available fonts. Order them by name and ascending order. Grab even empty ones.
-		$arrFonts = get_terms('fonts', array(
-			'orderby' => 'name',
-			'order' => 'ASC',
-			'hide_empty' => false
-		));
+
+		// Grab the font term id's for this board builder post		
+		$arrFontIDs = get_post_meta($intID, static::$prefix.'fonts', true);
+
+		// loop through the ID's and get the term object
+		$arrFonts = array();
+		foreach ($arrFontIDs as $fontID) {
+			$arrFonts[] = get_term((int)$fontID, 'fonts');
+		}
 
 		// We don't need the term object. Only need the font name so loop through the objects and grab the name.
 		foreach ($arrFonts as $font) {
@@ -68,6 +69,40 @@ class Board_Builder extends Cuztom_Post_type {
 		}
 
 		return $arrTextData;
+	}
+
+	/**
+	 * Function for getting the accessories for a board builder post
+	 * @param  [int] $intID [the post ID for the board bilder]
+	 * @return [array]      [containing assecories as assoc array's]
+	 */
+	public static function getAccessories($intID) {
+		$arrReturn = array();
+		// Get all the Accessory ID's for this post.
+		$arrAccIDs = get_post_meta($intID, static::$prefix.'accessory_types', true);
+
+		// Loop through the accessories and get the term objects.
+		$arrAccessories = array();
+		foreach ($arrAccIDs as $accID) {
+			$arrAccessories[] = get_term((int)$accID, 'accessories');
+		}
+
+		// Loop through the term objects.
+		foreach ($arrAccessories as $key => $acc) {
+			// Grab the term meta
+			$arrAccMeta = get_option('term_meta_accessories_'.$acc->term_id);
+
+			// Set the maximum amount to input if there is any. Otherwise hardcoded 5.
+			$intMaxAmount = (!empty($arrAccMeta['_max_amount'])) ? (int)$arrAccMeta['_max_amount'] : 5;
+
+			$arrReturn[] = array(
+				'name' => $acc->name,
+				'maxAmt' => $intMaxAmount,
+				'image' => wp_get_attachment_url((int)$arrAccMeta['_accessory_image'])
+			);
+		}
+
+		return $arrReturn;
 	}
 
 
