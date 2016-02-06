@@ -18,6 +18,23 @@ class Board_Builder extends Cuztom_Post_type {
 	private static $prefix = '_meta_builder_';
 
 	/**
+	 * Function for getting all the board data.
+	 * @param  [int] $intID [the post ID for the board builder]
+	 * @return [array]      [Array of board builder data]
+	 */
+	public static function getBoardData($intID) {
+		$arrReturn = array();
+
+		$arrReturn['prices'] = self::getBoardPrices($intID);
+		$arrReturn['maxBoardAmount'] = self::getMaxBoardAmount($intID);
+		$arrReturn['maxTextCharacters'] = self::getTextMaxChar($intID);
+		$arrReturn['fonts'] = self::getFonts($intID);
+		$arrReturn['accessories'] = self::getAccessories($intID);
+		
+		return $arrReturn;
+	}
+
+	/**
 	 * Function for grabbing the board prices for a customer builder
 	 * @param  [integer] $intID [the post ID for the board bilder]
 	 * @return [array]          [containing prices as assoc array's]
@@ -45,35 +62,53 @@ class Board_Builder extends Cuztom_Post_type {
 	}
 
 	/**
-	 * function for getting the text data for a board builder post
-	 * @param  [int] $intID [the post ID for the board bilder]
+	 * Function for getting the maximum amount of boards allowed for one product.
+	 * @param  [int] $intID [the post ID for the board builder]
+	 * @return [int]        [maximum amount of boards allowed]
+	 */
+	public static function getMaxBoardAmount($intID) {
+		// Grab the maximum amount of boards allowed
+		return (int)get_post_meta((int)$intID, static::$prefix.'max_board_amount', true);
+	}
+
+	/**
+	 * Function for getting the maximum amount of characters allowed on a text board.
+	 * @param  [int] $intID [the post ID for the board builder]
+	 * @return [int]        [the maximum amount of characters]
+	 */
+	public static function getTextMaxChar($intID) {
+		// Grab the maximum character count post meta
+		return (int)get_post_meta((int)$intID, static::$prefix.'max_character_count', true);
+	}
+
+	/**
+	 * function for getting the fonts for a board builder post
+	 * @param  [int] $intID [the post ID for the board builder]
 	 * @return [array]      [Array of font names]
 	 */
-	public static function getTextData($intID) {
-		$arrTextData = array();
-		// Grab the maximum character count post meta
-		$arrTextData['max_character_count'] = (int)get_post_meta((int)$intID, static::$prefix.'max_character_count', true);
+	public static function getFonts($intID) {
+		$arrFonts = array();
 
 		// Grab the font term id's for this board builder post		
 		$arrFontIDs = get_post_meta($intID, static::$prefix.'fonts', true);
 
 		// loop through the ID's and get the term object
-		$arrFonts = array();
+		$objFonts = array();
 		foreach ($arrFontIDs as $fontID) {
-			$arrFonts[] = get_term((int)$fontID, 'fonts');
+			$objFonts[] = get_term((int)$fontID, 'fonts');
 		}
 
 		// We don't need the term object. Only need the font name so loop through the objects and grab the name.
-		foreach ($arrFonts as $font) {
-			$arrTextData['fonts'][] = $font->name;
+		foreach ($objFonts as $font) {
+			$arrFonts[] = $font->name;
 		}
 
-		return $arrTextData;
+		return $arrFonts;
 	}
 
 	/**
 	 * Function for getting the accessories for a board builder post
-	 * @param  [int] $intID [the post ID for the board bilder]
+	 * @param  [int] $intID [the post ID for the board builder]
 	 * @return [array]      [containing assecories as assoc array's]
 	 */
 	public static function getAccessories($intID) {
