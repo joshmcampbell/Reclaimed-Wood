@@ -1,9 +1,6 @@
 /*
 	
-	Todo:
-		1: Inject hook functionality and add the data to the data object.
-		2: Update the text number for board on delete.
-		3: Validate input.
+	Board Builder JavaScript
 
  */
 jQuery(document).ready(function($) {
@@ -168,6 +165,7 @@ jQuery(document).ready(function($) {
 			}
 			// Update the board numbers and make sure that they are correct
 			updateBoardNumbers();
+			// Update the cost after a board has been deleted
 			updateCost();
 		};
 
@@ -339,8 +337,8 @@ jQuery(document).ready(function($) {
 			var price = 0;
 			$.each(data.prices, function(index, value) {
 				if(value.amount == boardNumber) {
-					// Sets price variable to the associated cost for the amount of boards, factors in discounts
-					price = (parseFloat(value.price) * (1 - discount));
+					// Sets price variable to the associated cost for the amount of boards.
+					price = parseFloat(value.price);
 					return;	
 				}
 			});

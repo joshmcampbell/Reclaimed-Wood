@@ -36,6 +36,7 @@ define('MG_IMAGES', MG_PLUGIN.'/assets/images');
 define('MG_CSS', MG_PLUGIN.'/assets/css');
 define('MG_JS', MG_PLUGIN.'/assets/js');
 define('MG_VENDOR', MG_PLUGIN.'/assets/vendor');
+define('MG_VIEWS', MG_PLUGIN_DIR.'/views');
 
 // Upload + image
 $uploads = wp_upload_dir();

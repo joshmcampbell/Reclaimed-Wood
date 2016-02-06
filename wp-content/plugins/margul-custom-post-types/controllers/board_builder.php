@@ -183,3 +183,16 @@ $post_type->add_meta_box(
 	'normal',
 	'high'
 );
+
+// Board Builder Hooks
+function boardBuilderHTML() {
+    $shortcodeHTML = '';
+    ob_start();
+    include(MG_VIEWS . '/boardBuilder.php');
+    $shortcodeHTML .= ob_get_clean();
+
+    var_dump($shortcodeHTML); die;
+
+    return $shortcodeHTML;
+}
+add_shortcode('board_builder', 'boardBuilderHTML');
