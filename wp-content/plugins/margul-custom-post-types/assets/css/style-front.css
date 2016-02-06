@@ -2,6 +2,10 @@
     This is mostly reliant on bootstrap now
     =========================================================================== */
 
+.page-template-tp-board_builder #primary {
+	width: 100%;
+}
+
 /*-- Extra Small --*/
 
 

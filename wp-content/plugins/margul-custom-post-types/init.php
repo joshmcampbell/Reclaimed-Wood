@@ -72,24 +72,24 @@ foreach (glob($pattern) as $filename) {
 	include_once($filename);
 }
 
-// Adds the print.css
+// Adds admin assets
 function my_enqueue($hook) {
-    wp_enqueue_style( 'print-form', MG_CSS . '/form_print.css' );
-    wp_enqueue_style( 'style-admin', MG_CSS . '/style-admin.css' );
-    wp_enqueue_script( 'script-admin', MG_JS . '/scripts.js' , 'jquery', MG_VERSION, true);
+    wp_enqueue_style( 'bb-style-admin', MG_CSS . '/style-admin.css' );
+    //wp_enqueue_script( 'bb-script-admin', MG_JS . '/scripts.js' , 'jquery', MG_VERSION, true);
 }
 add_action( 'admin_enqueue_scripts', 'my_enqueue' );
 
 
 /**
  * Plugin enqueue hooks to add the frontend CSS + scripts
- *
  */
 add_action('wp_print_styles', 'mg_enqueues', 10);
 function mg_enqueues() {
 	// Default script dependancies
 	$dependencies = array('jquery');
 
+	wp_enqueue_style( 'bb-style-front', MG_CSS . '/style-front.css' );
+	wp_enqueue_script( 'board-builder', MG_JS . '/boardBuilder.js', $dependencies, '1.0');
 }
 
 // Adds Plugin meta to the head for passing values to js
