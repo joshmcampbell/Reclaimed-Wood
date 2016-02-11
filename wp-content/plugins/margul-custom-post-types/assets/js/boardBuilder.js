@@ -18,6 +18,8 @@ jQuery(document).ready(function($) {
 		var boardID = 0;
 		// The number of active boards in the DOM
 		var boardNumber = 1;
+		// The URL for doing ajax request
+		var ajaxUrl = $('#ajax-url').html();
 		// jQuery object for body DOM element
 		var body = $('body');
 		// jQuery object for the att board button
@@ -36,8 +38,6 @@ jQuery(document).ready(function($) {
 
 			// AJAX call to grab all the data for the board
 			getData();
-			//Call to reset the cost on init
-			updateCost();
 			
 			// Event for when clicking the add board button
 			addBtn.on('click', addBoard);
@@ -49,57 +49,28 @@ jQuery(document).ready(function($) {
 			body.on('change', '.accessory-type', updateMaxAmount);
 			// Event for when the discount button is pressed.
 			disBtn.on('click', addDiscount);
+
+			$('#test').on('click', function() {
+				console.log(data);
+			});
 		}
 
 		/*
 			Function to grab all the data
 		 */
 		var getData = function() {
-			data = {
-				maxBoardAmount: 5,	
-				fonts: ['Arial', 'Times new Roman', 'Open Sans', 'Sans Serif'],
-				accessories: [
-					{
-						name: 'Photo Clips',
-						image: 'photo_clip.png',
-						maxAmt: 4
-					},
-					{
-						name: 'Wine Hook',
-						image: 'wine_hook.png',
-						maxAmt: 5
-					},
-				],
-				maxTextCharacters: 16,
-				prices: [
-					{
-						amount: 1,
-						price: 30.00
-					},
-					{
-						amount: 2,
-						price: 45.00
-					},
-					{
-						amount: 3,
-						price: 60.00
-					},
-					{
-						amount: 4,
-						price: 75.00
-					},
-					{
-						amount: 5,
-						price: 90.00
-					}
-				],
-				coupons: [
-					{
-						code: 'ABCD',
-						percent: .3
-					}
-				]
-			}
+			$.ajax({
+				url: ajaxUrl,
+				'method': 'POST',
+				'dataType': 'JSON',
+				'data': {
+					action: 'bb_get_data'
+				},
+				success: function(response) {
+					data = response;
+					updateCost();
+				}
+			});
 		}
 
 		/*

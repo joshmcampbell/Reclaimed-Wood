@@ -6,6 +6,10 @@
 	width: 100%;
 }
 
+#ajax-url {
+	display: none;
+}
+
 /*-- Extra Small --*/
 
 

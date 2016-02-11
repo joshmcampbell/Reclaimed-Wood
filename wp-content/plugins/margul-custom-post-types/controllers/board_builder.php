@@ -58,8 +58,7 @@ $tax_labels = array(
 
 // Arguments for the accessories taxonomy
 $args = array(
-    'hierarchical'     => false,
-    'show_ui'          => true
+    'hierarchical'     => false
 );
 // Register the taxnomy Accessories
 $taxonomy = register_cuztom_taxonomy( $tax_name, $post_name, $args, $tax_labels);
@@ -105,8 +104,7 @@ $tax_labels = array(
 
 // The argments for registering the font taxonomy
 $args = array(
-    'hierarchical'     => false,
-    'show_ui'          => true
+    'hierarchical'     => false
 );
 $taxonomy = register_cuztom_taxonomy( $tax_name, $post_name, $args, $tax_labels);
 
@@ -196,3 +194,12 @@ function boardBuilderHTML() {
     return $shortcodeHTML;
 }
 add_shortcode('board_builder', 'boardBuilderHTML');
+
+// AJAX request from board Builder to grab the data
+add_action( 'wp_ajax_bb_get_data', 'getBoardBuilderDataAJAX' );
+add_action( 'wp_ajax_nopriv_bb_get_data', 'getBoardBuilderDataAJAX' );
+function getBoardBuilderDataAJAX() {
+    echo json_encode(Board_Builder::getBoardData(26));
+
+    exit();
+}
