@@ -86,8 +86,14 @@ add_action( 'admin_enqueue_scripts', 'my_enqueue' );
  */
 add_action('wp_print_styles', 'mg_enqueues', 10);
 function mg_enqueues() {
+	global $post;
 	// Default script dependancies
 	$dependencies = array('jquery');
+
+	if($post->ID == 28) {
+		wp_enqueue_style( 'bb-custom-bootstrap', MG_CSS . '/bootstrap.min.css' );
+		wp_enqueue_script( 'bb-custom-bootstrap', MG_JS . '/bootstrap.min.js', $dependencies, '1.0');
+	}
 
 	wp_enqueue_style( 'bb-style-front', MG_CSS . '/style-front.css' );
 	wp_enqueue_script( 'board-builder', MG_JS . '/boardBuilder.js', $dependencies, '1.0');
