@@ -2,18 +2,18 @@
 
 <div class="row">
 
-	<div class="col-xs-8 text-center preview-wrapper">
+	<div class="col-sm-7 hidden-xs text-center preview-wrapper">
 		<br><br><br><br><br><br><br><br>
 		Here is where the preview will go
 		<br><br><br><br><br><br><br><br>
 	</div>
 
 	
-	<div class="col-xs-4">
-		<form action="checkout.php" method="POST">
+	<div class="col-xs-12 col-sm-5">
+		<form class="bb-form" action="checkout.php" method="POST">
 			<div class="builder-wrapper">
 			
-				<h3 class="text-center">Build your custom board</h3>
+				<h3>Build your custom board</h3>
 
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				 	<div class="panel panel-default">
@@ -40,18 +40,20 @@
 				  	</div>
 				</div>
 				<div id="addDiv">
-					<button type="button" id="boardAdd" class="btn btn-info full-width">Add Board</button>
+					<button type="button" id="boardAdd" class="btn btn-brown">Add Board</button>
 				</div>
 			</div>
 
 			<div class="builder-footer">
-						Total Cost:
-							<input type="text" style="width:100px; height:50px; font-size: 18px;" id="price" value="$3.50  " readonly>
-							<input type="submit" class="btn btn-success pull-right" style="height:50px; width:125px; font-size: 18px;" value="Finish">
-					<br><br>
-					Coupon Code:
-						<input type="text" style="width:150px;" id="couponTB">
-						<button type="button" id="couponBtn" class="btn btn-info half-width">Enter</button>
+				<div class="row">
+					<div class="col-xs-8 builder-cost">
+						Total cost:
+					</div>
+					<div class="col-xs-4">
+						<input type="text" id="price" value="" class="form-control" readonly>
+					</div>
+				</div>
+				<input type="submit" class="btn btn-green full-width" value="Proceed">
 			</div>	
 		</form>
 	</div>
