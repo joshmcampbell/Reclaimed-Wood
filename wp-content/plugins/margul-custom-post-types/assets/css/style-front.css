@@ -10,6 +10,85 @@
 	display: none;
 }
 
+/* HELPERS */
+.full-width {
+	width: 100%;
+}
+
+/* BOARD BUILDER STYLES */
+.builder-wrapper {
+	background: #B3A580;
+	padding: 15px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.builder-wrapper h3 {
+	color: #685642;
+	text-align: center;
+}
+
+.panel-default>.panel-heading {
+	background: #DED29E;
+}
+
+.panel-title a:hover {
+	text-decoration: none;
+}
+
+.btn {
+	outline: 0 !important;
+}
+
+.btn-danger {
+	padding: 2px 7px;
+	margin-top: -1px;
+}
+
+.btn-green {
+	background-color: #B7C68B !important;
+	color: #685642 !important;
+	font-weight: bold !important;
+	font-size: 120% !important;
+}
+
+.btn-green:hover {
+	background-color: #A4B76D !important;
+}
+
+.btn-brown {
+	background-color: #685642 !important;
+	color: #fff !important;
+}
+
+.btn-brown:hover {
+	background-color: #785E40 !important;
+}
+
+.builder-footer {
+	background: #685642;
+	padding: 15px;
+}
+
+.builder-footer > .row {
+	margin-bottom: 10px;
+}
+
+.builder-cost {
+	color: #fff;
+	text-align: right;
+	font-weight: bold;
+	margin-top: 7px;
+}
+
+#price {
+	color: #222 !important;
+}
+
+.bb-form {
+	box-shadow: 1px 7px 9px rgba(0,0,0,0.75);
+}
+
 /*-- Extra Small --*/
 
 

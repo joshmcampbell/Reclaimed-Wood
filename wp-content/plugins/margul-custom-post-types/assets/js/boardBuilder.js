@@ -49,10 +49,6 @@ jQuery(document).ready(function($) {
 			body.on('change', '.accessory-type', updateMaxAmount);
 			// Event for when the discount button is pressed.
 			disBtn.on('click', addDiscount);
-
-			$('#test').on('click', function() {
-				console.log(data);
-			});
 		}
 
 		/*
