@@ -4,7 +4,7 @@
 
  */
 jQuery(document).ready(function($) {
-	
+
 	/*
 		This is our board builder object. The constructor is called after the object with
 		boardBuilder.init(). So the constructor function in this object is the init where
@@ -20,33 +20,39 @@ jQuery(document).ready(function($) {
 		var boardNumber = 1;
 		// The URL for doing ajax request
 		var ajaxUrl = $('#ajax-url').html();
-		// jQuery object for body DOM element
-		var body = $('body');
+		// jQuery object for body DOM element. We are caching the body element here so 
+		// we don't have to keep on accessing the DOM element (unnecessary requests)
+		var $body = $('body');
 		// jQuery object for the att board button
-		var addBtn = $('#boardAdd');
+		var addBtn = $body.find('#boardAdd');
 		// jQuery object for the accordion (where all the boards are placed)
-		var accWrap = $('#accordion');
+		var accWrap = $body.find('#accordion');
  		// The current discount applied by coupons, default to 0
  		var discount = 0;
  		// jQuery object for the 'Enter Discount' button
- 		var disBtn = $('#couponBtn');
+ 		var disBtn = $body.find('#couponBtn');
+ 		var objPreview = {};
 		
 		/*
 			Constructor function for the object
 		 */
-		var init = function() {
+		var init = function(objPrev) {
 
 			// AJAX call to grab all the data for the board
 			getData();
+
+			objPreview = objPrev;
 			
 			// Event for when clicking the add board button
 			addBtn.on('click', addBoard);
 			// Event for deleting a board
-			body.on('click', '.board-delete', deleteBoard);
+			$body.on('click', '.board-delete', deleteBoard);
 			// Event for when you change the functionality for a board
-			body.on('change', '.board-func', injectBoardFunctionality);
+			$body.on('change', '.board-func', injectBoardFunctionality);
 			// Event for when you change the accessory type
-			body.on('change', '.accessory-type', updateMaxAmount);
+			$body.on('change', '.accessory-type', updateMaxAmount);
+			// Event for when you change the accesory quantity
+			$body.on('change', '.accessory-qty', updateAccessoryQty);
 			// Event for when the discount button is pressed.
 			disBtn.on('click', addDiscount);
 		}
@@ -115,13 +121,21 @@ jQuery(document).ready(function($) {
 			if(boardNumber >= data.maxBoardAmount) {
 				addBtn.prop('disabled', true);
 			}
+
 			updateCost();
+
+			objPreview.addBoard();
+
 		};
 
 		/*
 			Function for deleting a board.
 		 */
 		var deleteBoard = function() {
+			// Grab the index of the board for the objPreview
+			var index = $(this).closest('.panel').index();
+			// Call the objPreview API and delete the board
+			objPreview.deleteBoard(index);
 			// Decrement the amount of boards
 			boardNumber--;
 			// Remove the board panel from the DOM
@@ -140,15 +154,23 @@ jQuery(document).ready(function($) {
 			Inject the correct board options based on the functionality of the board
 		 */
 		var injectBoardFunctionality = function() {
+			// Grab the index of the board for the objPreview
+			var index = $(this).closest('.panel').index();
+
 			switch($(this).val()) {
 				case 'text':
 					addTextOption($(this));
+					// Call the objPreview module to update
+					objPreview.changeBoardFunctionality(index, 'text');
 					break;
 				case 'accessory':
 					addAccessoryOption($(this));
+					// Call the objPreview module to update
+					objPreview.changeBoardFunctionality(index, 'acc');
 					break;
 				case 'blank':
 					deleteBoardOptions($(this));
+					objPreview.deleteOptions(index);
 					break;
 			}
 		}
@@ -262,11 +284,23 @@ jQuery(document).ready(function($) {
 		}
 
 		/*
+			Update the accessory quantity amount
+		 */
+		var updateAccessoryQty = function() {
+			// Grab the index of where to change the qty
+			var index = $(this).closest('.panel').index();
+			// Grab the quantity
+			var qty = $(this).val();
+			// Just used to call the preview for now
+			objPreview.changeAccessoryQty(index, qty);
+		}
+
+		/*
 			Update the board numbers to be correct in ascending order.
 		 */
 		var updateBoardNumbers = function() {
 			// Get all the boards
-			var arrPanels = $('.panel');
+			var arrPanels = $body.find('.panel');
 
 			// Loop through all the current active boards.
 			for(var i = 1; i <= arrPanels.length; i++) {
@@ -301,7 +335,7 @@ jQuery(document).ready(function($) {
 			Function to reset the cost
 		*/
 		var updateCost = function(){
-			var price = 0;
+			var price = 0.0;
 			$.each(data.prices, function(index, value) {
 				if(value.amount == boardNumber) {
 					// Sets price variable to the associated cost for the amount of boards.
@@ -310,7 +344,7 @@ jQuery(document).ready(function($) {
 				}
 			});
 			// Set price textbox to the calculated cost, with additional formatting
-			$('#price').val('$' + price.toFixed(2) + "  ");
+			$body.find('#price').val('$' + price.toFixed(2));
 
 		}	
 
@@ -319,13 +353,36 @@ jQuery(document).ready(function($) {
 			objects init function (constructor) and set everything up.
 		 */
 		return {
-			init: function() {
-				init();
+			init: function(objPrev) {
+				init(objPrev);
 			}
 		}
 
 	})();
 
+	var boardPreview = (function() {
+
+		var $preview = $('.preview-wrapper');
+
+		return {
+			addBoard: function() {
+				console.log('Im Going to add a board');
+				console.log($preview);
+			},
+			deleteBoard: function(index) {
+				console.log('Im going to delete board with index: ' + index);
+			},
+			changeBoardFunctionality: function(index, func) {
+				console.log('Im going to change the board functionality on index: ' + index + ', to' + func);
+			},
+			changeAccessoryQty: function(index, qty) {
+				console.log('Im Going to change the qty on index: ' + index + ', to: ' + qty);
+			}
+		}
+
+
+	})();
+
 	// Call the boardBuilder init function to set up the builder.
-	boardBuilder.init();
+	boardBuilder.init(boardPreview);
 });
