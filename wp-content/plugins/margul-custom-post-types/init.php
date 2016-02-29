@@ -91,7 +91,7 @@ function mg_enqueues() {
 	$dependencies = array('jquery');
 
 	// If we are on the boardBuilder page then add the custom bootstrap.
-	if($post->ID == 28) {
+	if($post->ID == 28 || $post->ID == 38) {
 		wp_enqueue_style( 'bb-custom-bootstrap', MG_CSS . '/bootstrap.min.css' );
 		wp_enqueue_script( 'bb-custom-bootstrap', MG_JS . '/bootstrap.min.js', $dependencies, '1.0');
 	}

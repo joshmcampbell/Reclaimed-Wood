@@ -2,15 +2,19 @@
 
 <div class="row">
 
-	<div class="col-sm-7 hidden-xs text-center preview-wrapper">
-		<br><br><br><br><br><br><br><br>
-		Here is where the preview will go
-		<br><br><br><br><br><br><br><br>
+	<div class="col-sm-7 hidden-xs text-center">
+
+		<div class="preview-wrapper">
+			<br><br><br><br><br><br><br><br>
+			Here is where the preview will go
+			<br><br><br><br><br><br><br><br>
+		</div>
+		
 	</div>
 
 	
 	<div class="col-xs-12 col-sm-5">
-		<form class="bb-form" action="checkout.php" method="POST">
+		<form class="bb-form" action="/Reclaimed-Wood/checkout" method="POST">
 			<div class="builder-wrapper">
 			
 				<h3>Build your custom board</h3>
