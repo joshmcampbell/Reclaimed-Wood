@@ -14,7 +14,7 @@
 
 	
 	<div class="col-xs-12 col-sm-5">
-		<form class="bb-form" action="checkout.php" method="POST">
+		<form class="bb-form" action="/Reclaimed-Wood/checkout" method="POST">
 			<div class="builder-wrapper">
 			
 				<h3>Build your custom board</h3>

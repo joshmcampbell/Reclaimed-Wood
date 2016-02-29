@@ -31,6 +31,7 @@ jQuery(document).ready(function($) {
  		var discount = 0;
  		// jQuery object for the 'Enter Discount' button
  		var disBtn = $body.find('#couponBtn');
+ 		// The preview object that gets passed in the constructor
  		var objPreview = {};
 		
 		/*
@@ -364,25 +365,29 @@ jQuery(document).ready(function($) {
 
 		var $preview = $('.preview-wrapper');
 
+		// Set up the event for a hover to call the boardbuilder return API.
+
 		return {
 			addBoard: function() {
-				console.log('Im Going to add a board');
-				console.log($preview);
+
 			},
 			deleteBoard: function(index) {
-				console.log('Im going to delete board with index: ' + index);
+
 			},
 			changeBoardFunctionality: function(index, func) {
-				console.log('Im going to change the board functionality on index: ' + index + ', to' + func);
+
 			},
 			changeAccessoryQty: function(index, qty) {
-				console.log('Im Going to change the qty on index: ' + index + ', to: ' + qty);
+
+			},
+			updateText: function(index, text) {
+
 			}
 		}
-
 
 	})();
 
 	// Call the boardBuilder init function to set up the builder.
+	// Pass in the preview object because it will be used as an API to the preview module.
 	boardBuilder.init(boardPreview);
 });
