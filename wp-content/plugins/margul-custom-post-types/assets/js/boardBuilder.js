@@ -54,6 +54,8 @@ jQuery(document).ready(function($) {
 			$body.on('change', '.accessory-type', updateMaxAmount);
 			// Event for when you change the accesory quantity
 			$body.on('change', '.accessory-qty', updateAccessoryQty);
+			// Event for updating the text on a board
+			$body.on('keyup', '.board-text', boardTextUpdate)
 			// Event for when the discount button is pressed.
 			disBtn.on('click', addDiscount);
 		}
@@ -199,12 +201,24 @@ jQuery(document).ready(function($) {
 			strHtml += '</div>';
 			strHtml += '<div class="form-group">';
 			strHtml +=   '<label>Text (max 16 chars)</label>';
-			strHtml += 	'<input name="boards[' +  boardID + '][text]" type="text" class="form-control" maxlength="' + data.maxTextCharacters + '">';
+			strHtml += 	'<input name="boards[' +  boardID + '][text]" type="text" class="form-control board-text" maxlength="' + data.maxTextCharacters + '">';
 			strHtml += '</div>';
 
 			// Inject the HTML into the options container
 			boardOptionContainer.html(strHtml);
 		}
+
+		/*
+			Function for when the board text is changed. Will call the preview Module
+			and set the text for that board. On keyUp event.
+		 */
+		var boardTextUpdate = function() {
+			// Grab the index of the board for the objPreview
+			var index = $(this).closest('.panel').index();
+
+			// Call preview module with index and the text value
+			objPreview.updateText(index, $(this).val());
+		} 
 
 		/*
 			Inject accessory options for the board
@@ -363,25 +377,46 @@ jQuery(document).ready(function($) {
 
 	var boardPreview = (function() {
 
+		// Cache the preview wrapper element so we don't have to keep accessing it.
 		var $preview = $('.preview-wrapper');
+		var $ul = $preview.find('.preview-ul');
 
 		// Set up the event for a hover to call the boardbuilder return API.
 
+		function setTextOptions(index) {
+			$ul.find('li').eq(index).addClass('text-functionality');
+		}
+
 		return {
 			addBoard: function() {
+				var strHTML = '';
 
+				strHTML += '<li></li>';
+
+				$ul.append(strHTML);
 			},
 			deleteBoard: function(index) {
-
+				$ul.find('li').eq(index).remove();			
 			},
 			changeBoardFunctionality: function(index, func) {
+				switch(func) {
+					case 'blank':
+						deleteBoardOptions(index);
+						break;
+					case 'text':
+						setTextOptions(index);
+						break;
+					case 'accessory':
+						setAccessoryOptions(index);
+						break;
+				}
 
 			},
 			changeAccessoryQty: function(index, qty) {
 
 			},
 			updateText: function(index, text) {
-
+				$ul.find('li').eq(index).text(text);
 			}
 		}
 

@@ -14,7 +14,5 @@ defined('ABSPATH') OR exit;
 
 class Order extends Cuztom_Post_type {
 
-	
-
 
 } // end of class
