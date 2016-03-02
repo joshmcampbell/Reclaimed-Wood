@@ -6,7 +6,7 @@
 
 		<div class="preview-wrapper">
 			<ul class="preview-ul">
-				<li></li>
+				<li class="blank-functionality"></li>
 			</ul>
 		</div>
 		

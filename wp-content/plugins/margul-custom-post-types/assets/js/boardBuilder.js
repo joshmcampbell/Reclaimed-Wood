@@ -391,7 +391,7 @@ jQuery(document).ready(function($) {
 			addBoard: function() {
 				var strHTML = '';
 
-				strHTML += '<li></li>';
+				strHTML += '<li class="blank-functionality"></li>';
 
 				$ul.append(strHTML);
 			},
@@ -412,12 +412,15 @@ jQuery(document).ready(function($) {
 				}
 
 			},
-			changeAccessoryQty: function(index, qty) {
-
+			deleteOptions: function(index) {
+				$ul.find('li').eq(index).removeClass().addClass('blank-functionality').text('');
 			},
 			updateText: function(index, text) {
 				$ul.find('li').eq(index).text(text);
-			}
+			},
+			changeAccessoryQty: function(index, qty) {
+
+			},
 		}
 
 	})();
