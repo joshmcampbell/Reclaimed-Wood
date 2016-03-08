@@ -51,7 +51,7 @@ jQuery(document).ready(function($) {
 			// Event for when you change the functionality for a board
 			$body.on('change', '.board-func', injectBoardFunctionality);
 			// Event for when you change the accessory type
-			$body.on('change', '.accessory-type', updateMaxAmount);
+			$body.on('change', '.accessory-type', accessoryChange);
 			// Event for when you change the accesory quantity
 			$body.on('change', '.accessory-qty', updateAccessoryQty);
 			// Event for updating the text on a board
@@ -164,12 +164,14 @@ jQuery(document).ready(function($) {
 				case 'text':
 					addTextOption($(this));
 					// Call the objPreview module to update
-					objPreview.changeBoardFunctionality(index, 'text');
+					objPreview.setTextOptions(index);
 					break;
 				case 'accessory':
 					addAccessoryOption($(this));
 					// Call the objPreview module to update
-					objPreview.changeBoardFunctionality(index, 'acc');
+					objPreview.setAccessoryOption(index, 
+						getAccessoryImage($(this)), 
+						parseInt($(this).closest('.panel').find('.accessory-qty').val()));
 					break;
 				case 'blank':
 					deleteBoardOptions($(this));
@@ -248,8 +250,10 @@ jQuery(document).ready(function($) {
 
 			// For the quantity use the first accessoriy type on creation. This will be updated
 			// if the user selects a new accessory type to reflect that type's maximum amount.
+			var selected = '';
 			for(var i = 1; i <= data.accessories[0].maxAmt; i++) {
-				strHtml += '<option value="' + i + '">' + i + '</option>';
+				selected = (i == data.accessories[0].maxAmt) ? 'selected' : '';
+				strHtml += '<option value="' + i + '" ' + selected +'>' + i + '</option>';
 			}
 
 			strHtml += 	'</select>';
@@ -269,15 +273,33 @@ jQuery(document).ready(function($) {
 		}
 
 		/*
+			Function that gets run when you change accessory type
+		 */
+		var accessoryChange = function() {
+			// Update the quantity to reflect the new accessory
+			updateMaxAmount($(this));
+
+			// Get the index of the board
+			var index = $(this).closest('.panel').index();
+			// Get the image associated with this accessory
+			var image = getAccessoryImage($(this));
+			// Get the quantity selected
+			var qty   = $(this).closest('.panel').find('.accessory-qty').val();
+
+			// Call preview API to update;
+			objPreview.setAccessoryOption(index, image, qty);
+		}
+
+		/*
 			Update the maximum quantity amount for a accessory type. Used when a user changes the accessory type.
 		 */
-		var updateMaxAmount = function() {
+		var updateMaxAmount = function(objThis) {
 			// Start with 1 as a max amount
 			var maxAmt = 1;
 			// The accessories type selected
-			var accessoryType = $(this).val();
+			var accessoryType = objThis.closest('.panel').find('.accessory-type').val();
 			// The jQuery quantity selectbox.
-			var objQty = $(this).closest('.panel').find('.accessory-qty');
+			var objQty = objThis.closest('.panel').find('.accessory-qty');
 
 			// Loop through the data.accessories until you are at the accessory they selected.
 			$.each(data.accessories, function(index, value) {
@@ -290,8 +312,10 @@ jQuery(document).ready(function($) {
 
 			// Create the options to reflect the new accessory's maximum amount
 			var strHtml = '';
+			var selected = '';
 			for(var i = 1; i <= maxAmt; i++) {
-				strHtml += '<option value="' + i + '">' + i +'</option>';
+				selected = (maxAmt == i) ? 'selected' : '';
+				strHtml += '<option value="' + i + '" ' + selected + '>' + i +'</option>';
 			}
 
 			// Inject the HTML for the quantity select box
@@ -304,10 +328,12 @@ jQuery(document).ready(function($) {
 		var updateAccessoryQty = function() {
 			// Grab the index of where to change the qty
 			var index = $(this).closest('.panel').index();
+			// Get the image associated with the accessory
+			var image = getAccessoryImage($(this));
 			// Grab the quantity
 			var qty = $(this).val();
-			// Just used to call the preview for now
-			objPreview.changeAccessoryQty(index, qty);
+			// Call the preview API to update the board
+			objPreview.setAccessoryOption(index, image, qty);
 		}
 
 		/*
@@ -323,6 +349,23 @@ jQuery(document).ready(function($) {
 				$(arrPanels[i - 1]).find('.board-nr').html(i);
 			}
 
+		}
+
+		/*
+			Function to get the image for an accessory. Pass in any jQuery object
+			that is within the board DOM element.
+		 */
+		var getAccessoryImage = function(objThis) {
+			var acc = objThis.closest('.panel').find('.accessory-type').val();
+			var img = '';
+
+			$.each(data.accessories, function(index, value) {
+				if(value.name == acc) {
+					img = value.image;;
+				}
+			});
+
+			return img;
 		}
 
 		/*
@@ -383,43 +426,45 @@ jQuery(document).ready(function($) {
 
 		// Set up the event for a hover to call the boardbuilder return API.
 
-		function setTextOptions(index) {
-			$ul.find('li').eq(index).addClass('text-functionality');
+		function buildAccessoryHTML(img, qty) {
+			
+			var width = 'width:' + parseFloat(100 / qty) + '%; ';
+			var image = "background-image: url('" + img + "');";
+
+			var strHTML = '';
+			strHTML += '<ul class="acc-wrap">';
+
+			for (var i = 1; i <= qty; i++) {
+				strHTML += '<li style="' + width + image + '"></li>';
+			}
+
+			strHTML += '</ul>';
+
+			return strHTML;
 		}
 
 		return {
 			addBoard: function() {
-				var strHTML = '';
-
-				strHTML += '<li class="blank-functionality"></li>';
-
-				$ul.append(strHTML);
+				$ul.append('<li class="board blank-functionality"></li>');
 			},
 			deleteBoard: function(index) {
 				$ul.find('li').eq(index).remove();			
 			},
-			changeBoardFunctionality: function(index, func) {
-				switch(func) {
-					case 'blank':
-						deleteBoardOptions(index);
-						break;
-					case 'text':
-						setTextOptions(index);
-						break;
-					case 'accessory':
-						setAccessoryOptions(index);
-						break;
-				}
-
+			setTextOptions: function(index) {
+				$ul.find('li').eq(index).removeClass().addClass('board text-functionality').html('');
+			},
+			setAccessoryOption: function(index, img, qty) {
+				$ul.find('li').eq(index).removeClass().addClass('board accessory-functionality')
+									    .html(buildAccessoryHTML(img, qty));
 			},
 			deleteOptions: function(index) {
-				$ul.find('li').eq(index).removeClass().addClass('blank-functionality').text('');
+				$ul.find('li').eq(index).removeClass().addClass('board blank-functionality').text('');
 			},
 			updateText: function(index, text) {
 				$ul.find('li').eq(index).text(text);
 			},
-			changeAccessoryQty: function(index, qty) {
-
+			changeAccessoryQty: function(index, img, qty) {
+				$ul.find('li').eq(index).html(buildAccessoryHTML(img, qty));
 			},
 		}
 

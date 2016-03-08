@@ -14,5 +14,35 @@ defined('ABSPATH') OR exit;
 
 class Order extends Cuztom_Post_type {
 
+	/**
+	 * Function that grabs the boards array and makes a string of the order summary
+	 * @param  [array]  $arrBoards [boards array.]
+	 * @return [string]            [String of order summary]
+	 */
+	public static function arrayToOrderSummary($arrBoards) {
+		$strText = '';
+
+		// Loop through each board and get the text
+		foreach ($arrBoards as $key => $board) {
+			$strText .= 'Board Number: #' . ($key + 1) . '\n';
+			$strText .= 'Functionality: ' . $board['functionality'] . '\n';
+
+			if($board['functionality'] == 'text') {
+				$strText .= '\tFont: ' . $board['font'] . '\n';
+				$strText .= '\tText: ' . $board['text'] . '\n';
+			} elseif($board['functionality'] == 'accessory') {
+				$strText .= '\tType: ' . $board['accessory'] . '\n';
+				$strText .= '\tQuantity: ' . $board['quantity'] . '\n';
+			}
+
+			$strText .= '\n';
+		}
+
+		return $strText;
+	}
+
+	public static function insertOrder($arrOrder) {
+		
+	}
 
 } // end of class

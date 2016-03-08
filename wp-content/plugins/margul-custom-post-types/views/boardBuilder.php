@@ -6,7 +6,7 @@
 
 		<div class="preview-wrapper">
 			<ul class="preview-ul">
-				<li class="blank-functionality"></li>
+				<li class="board blank-functionality"></li>
 			</ul>
 		</div>
 		

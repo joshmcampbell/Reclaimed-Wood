@@ -96,21 +96,22 @@
 }
 
 .preview-ul {
-	width: 300px;
+	width: 375px;
 	list-style-type: none;
 	margin: 0 auto;
 	padding: 0;
 }
 
-.preview-ul li {
-	width: 300px;
-	background-color: brown;
+.preview-ul .board {
+	width: 375px;
+	background-color: #685642;
 	height: 60px;
 	margin-bottom: 10px;
+	box-shadow: 1px 7px 9px rgba(0,0,0,0.75);
 }
 
 .preview-ul li.blank-functionality {
-	
+
 }
 
 .preview-ul li.text-functionality {
@@ -119,6 +120,22 @@
 	font-weight: bold;
 	padding: 15px 0px;
 	font-size: 150%;
+	letter-spacing: 8px;
+}
+
+.preview-ul li.accessory-functionality .acc-wrap {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	height: 100%;
+}
+
+.preview-ul li.accessory-functionality .acc-wrap li {
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	height: 100%;
 }
 
 /*-- Extra Small --*/
