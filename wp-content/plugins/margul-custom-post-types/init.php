@@ -98,6 +98,7 @@ function mg_enqueues() {
 
 	wp_enqueue_style( 'bb-style-front', MG_CSS . '/style-front.css' );
 	wp_enqueue_script( 'board-builder', MG_JS . '/boardBuilder.js', $dependencies, '1.0');
+	wp_enqueue_script( 'scripts-front', MG_JS . '/scripts-front.js' , 'jquery', MG_VERSION, true);
 }
 
 // Adds Plugin meta to the head for passing values to js
