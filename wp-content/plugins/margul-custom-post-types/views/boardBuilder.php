@@ -5,9 +5,9 @@
 	<div class="col-sm-7 hidden-xs text-center">
 
 		<div class="preview-wrapper">
-			<br><br><br><br><br><br><br><br>
-			Here is where the preview will go
-			<br><br><br><br><br><br><br><br>
+			<ul class="preview-ul">
+				<li class="board blank-functionality"></li>
+			</ul>
 		</div>
 		
 	</div>

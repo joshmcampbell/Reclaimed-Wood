@@ -2,7 +2,8 @@
     This is mostly reliant on bootstrap now
     =========================================================================== */
 
-.page-template-tp-board_builder #primary {
+.page-template-tp-board_builder #primary,
+.page-template-tp-checkout-php #primary  {
 	width: 100%;
 }
 
@@ -87,6 +88,54 @@
 
 .bb-form {
 	box-shadow: 1px 7px 9px rgba(0,0,0,0.75);
+}
+
+/* Board Preview Styles */
+.preview-wrapper {
+	margin-top: 75px;
+}
+
+.preview-ul {
+	width: 375px;
+	list-style-type: none;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.preview-ul .board {
+	width: 375px;
+	background-color: #685642;
+	height: 60px;
+	margin-bottom: 10px;
+	box-shadow: 1px 7px 9px rgba(0,0,0,0.75);
+}
+
+.preview-ul li.blank-functionality {
+
+}
+
+.preview-ul li.text-functionality {
+	color: #fff;
+	text-align: center;
+	font-weight: bold;
+	padding: 15px 0px;
+	font-size: 150%;
+	letter-spacing: 8px;
+}
+
+.preview-ul li.accessory-functionality .acc-wrap {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	height: 100%;
+}
+
+.preview-ul li.accessory-functionality .acc-wrap li {
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center center;
+	height: 100%;
 }
 
 /*-- Order--*/
