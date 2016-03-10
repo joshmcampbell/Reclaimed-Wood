@@ -2,8 +2,7 @@
     This is mostly reliant on bootstrap now
     =========================================================================== */
 
-.page-template-tp-board_builder #primary, 
-.page-template-tp-checkout-php #primary{
+.page-template-tp-board_builder #primary {
 	width: 100%;
 }
 
@@ -14,21 +13,6 @@
 /* HELPERS */
 .full-width {
 	width: 100%;
-}
-.half-width {
-	width: 50%;
-}
-.third-width{
-	width: 30%;
-}
-.thirdwidth{
-	width: 80%;
-}
-.left{
-	float: left;
-}
-.right{
-	float: right;
 }
 
 /* BOARD BUILDER STYLES */
@@ -105,37 +89,30 @@
 	box-shadow: 1px 7px 9px rgba(0,0,0,0.75);
 }
 
-/*CHECKOUT STYLES*/
-.text-review {
-	text-align: left;
-	margin-top: 3px;
+/*-- Order--*/
+.alt-width{
+	width: 70%;
 }
-.text-nested {
-	color: #000000;
-	margin-left: 30px;
+.half-width{
+	width: 40%;
 }
-.buttons {
+.order-div{
+	padding: 7px;
+}
+.right{
 	float: right;
-	width: 40%;
 }
-.btn-continue {
-	background-color: #23D926 !important;
-	color: #000000 !important;
-	width: 50%;
-}
-.btn-return {
-	background-color: #De0D0D !important;
-	color: #000000 !important;
-	border-spacing: 30px;
-	width: 40%;
+.left{
+	float: left;
 }
 .has-error{
-	border-style: solid;
-	border-width: thin;
-	border-color: #De0D0D;
+	border: solid, black, 1px;
 }
-.noresize{
-	padding: 6px;
+.btn-return{
+	background-color: #DB1A1A;
+}
+.btn-continue{
+background-color: #B7C68B;
 }
 /*-- Extra Small --*/
 
