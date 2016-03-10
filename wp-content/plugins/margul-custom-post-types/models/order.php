@@ -14,8 +14,6 @@ defined('ABSPATH') OR exit;
 
 class Order extends Cuztom_Post_type {
 
-<<<<<<< HEAD
-=======
 	public static function numToEng($num){
 		$strReturn = "";
 		
@@ -44,7 +42,6 @@ class Order extends Cuztom_Post_type {
 			case 1:
 			return "second";
 			break;
->>>>>>> 340e134407316ccffd87ffccc09bb6fddfec6ada
 
 			case 2:
 			return "third";
