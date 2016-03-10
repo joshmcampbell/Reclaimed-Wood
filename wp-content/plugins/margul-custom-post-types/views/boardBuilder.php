@@ -14,9 +14,11 @@
 
 	
 	<div class="col-xs-12 col-sm-5">
-		<form class="bb-form" action="/Reclaimed-Wood/order" method="POST">
+		<form class="bb-form" action="/Reclaimed-Wood/checkout" method="POST">
 			<div class="builder-wrapper">
+			
 				<h3>Build your custom board</h3>
+
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				 	<div class="panel panel-default">
 				   		<div class="panel-heading" role="tab" id="headingOne">

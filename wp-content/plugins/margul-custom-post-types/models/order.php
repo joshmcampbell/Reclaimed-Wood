@@ -84,4 +84,6 @@ class Order extends Cuztom_Post_type {
 		}
 		return $strReturn;
 	}
+
+	
 } // end of class
