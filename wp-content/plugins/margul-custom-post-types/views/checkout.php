@@ -1,4 +1,7 @@
 
+<script type="text/javascript" src="/wp-content/plugins/margul-custom-post-types/assets/js/script-front.js">
+	function();
+</script>
 
 <div class="row">
 	<div class="col-xs-12" >
@@ -26,19 +29,19 @@
 			<br>
 				<div class="form-group order-div <?php echo (in_array('custName', $objData->errors)) ? 'has-error' : ''; ?>">
 					Full Name*:
-					<input type="text" name="custName" class="right alt-width" value="<?php echo ($objData->error) ? $objData->input['custName'] : ''; ?>">
+					<input type="text" id="checkout-name" name="custName" class="right alt-width" value="<?php echo ($objData->error) ? $objData->input['custName'] : ''; ?>">
 				</div>
 				<div class="form-group order-div <?php echo (in_array('custAddr', $objData->errors)) ? 'has-error' : ''; ?>">
 					Address*:
-					<input type="text" name="custAddr" class="right alt-width" value="<?php echo ($objData->error) ? $objData->input['custAddr'] : ''; ?>">
+					<input type="text" id="checkout-address" name="custAddr" class="right alt-width" value="<?php echo ($objData->error) ? $objData->input['custAddr'] : ''; ?>">
 				</div>
 				<div class="form-group order-div">
 					Address (line 2):
-					<input type="text" name="custAddr2" class="right alt-width" value="<?php echo ($objData->error) ? $objData->input['custAddr2'] : ''; ?>">
+					<input type="text" id="checkout-addr2"name="custAddr2" class="right alt-width" value="<?php echo ($objData->error) ? $objData->input['custAddr2'] : ''; ?>">
 				</div>
 				<div class="form-group order-div <?php echo (in_array('custProv', $objData->errors)) ? 'has-error' : ''; ?>">
 					Province*:
-					<select name="custProv" class="form-control board-func right alt-width" data-id="0" value="<?php echo ($objData->error) ? $objData->input['custProv'] : ''; ?>">
+					<select name="custProv" id="checkout-province" class="form-control board-func right alt-width" data-id="0" value="<?php echo ($objData->error) ? $objData->input['custProv'] : ''; ?>">
 			       		<option value="df">===Select Province===</option>  
 			      		<option value="al">Alberta</option>
 			       		<option value="bc">British Columbia</option>
@@ -54,26 +57,26 @@
 				</div>
 				<div class="form-group order-div <?php echo (in_array('custCity', $objData->errors)) ? 'has-error' : ''; ?>">
 					City*:
-					<input type="text" name="custCity"  class="right alt-width" value="<?php echo ($objData->error) ? $objData->input['custCity'] : ''; ?>">
+					<input type="text" id="checkout-city" name="custCity"  class="right alt-width" value="<?php echo ($objData->error) ? $objData->input['custCity'] : ''; ?>">
 				</div>
 				<div class="form-group order-div <?php echo (in_array('custNum', $objData->errors)) ? 'has-error' : ''; ?>">
 					Phone Number*:
-					<input type="text" name="custNum" class="right alt-width" value="<?php echo ($objData->error) ? $objData->input['custCustNum'] : ''; ?>">
+					<input type="text" id="checkout-phone" name="custNum" class="right alt-width" value="<?php echo ($objData->error) ? $objData->input['custCustNum'] : ''; ?>">
 				</div>
 				<div class="form-group order-div <?php echo (in_array('custCode', $objData->errors)) ? 'has-error' : ''; ?>">
 					Postal Code*:
-					<input type="text" name="custCode" class="right alt-width" max="6" value="<?php echo ($objData->error) ? $objData->input['custCode'] : ''; ?>">
+					<input type="text" id="checkout-postal" name="custCode" class="right alt-width" max="6" value="<?php echo ($objData->error) ? $objData->input['custCode'] : ''; ?>">
 				</div>
 				<div class="form-group">
-					<input type="hidden" name="board" value="<?php json_encode($_POST['boards']); ?>"/>
+					<input type="hidden" id="hidden-field-boards" name="board" value="<?php json_encode($_POST['boards']); ?>"/>
 				</div>
 				<?php if($objData->error) { ?>
                     <div class="alert alert-danger" role="alert"><strong>You seem to be missing something:</strong><br><?php echo implode('<br>', $objData->msg); ?></div>
                 <?php } ?>
 				<div class="alt-width right">
 				<br>
-					<input type="submit" class="btn btn-continue half-width left" value="Checkout">
-					<input type="button" id="return" class="btn btn-return half-width right" value="Return">
+					<input type="submit" id="checkout-btn" class="btn btn-continue half-width left" value="Checkout">
+					<input type="button" id="return-btn" class="btn btn-return half-width right" value="Return">
  				</div>		
 			</form>
 		</div>
