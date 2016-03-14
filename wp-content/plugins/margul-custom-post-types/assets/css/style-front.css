@@ -13,7 +13,10 @@
 
 /* HELPERS */
 .full-width {
-	width: 100%;
+	width: 100% !important;
+}
+.req {
+	color: red;
 }
 
 /* BOARD BUILDER STYLES */
@@ -148,20 +151,43 @@
 .order-div{
 	padding: 7px;
 }
-.right{
-	float: right;
+.form-group {
+	padding: 5px;
+	margin-bottom: 5px;
 }
-.left{
-	float: left;
+.form-group label {
+	margin-top: 5px;
 }
 .has-error{
-	border: solid, black, 1px;
+	border: 1px solid red;
 }
 .alert{
 	border-color: red !important;
 	border-width: thin !important;
 	background-color: #F08B8B !important;
 	text-align: center !important;
+}
+.order-summary {
+	padding: 10px;
+	border-radius: 6px;
+	border: 1px solid #bce8f1;
+	background-color: #d9edf7;
+	margin-bottom: 15px;
+}
+.alert-danger {
+	background-color: #f2dede;
+	border: 1px solid #ebccd1;
+	color: #a94442;
+	padding: 15px;
+	border-radius: 6px;
+	margin: 10px 0px;
+
+}
+.order-summary h3 {
+	margin: 0px 0px 5px 0px;
+}
+.order-div strong {
+	padding-top: 3px;
 }
 /*-- Extra Small --*/
 
