@@ -35,6 +35,7 @@ class Order extends Cuztom_Post_type {
 	    	$objData->boards = $_POST['boards'];
 	    } elseif(!empty($_POST['check_boards'])) {
 	    	$objData->boards = json_decode(stripslashes($_POST['check_boards']), true);
+	    	self::boardArrayToText($objData->boards);
 	    } else {
 	    	$objData->boards = array();
 	    }
@@ -124,7 +125,8 @@ class Order extends Cuztom_Post_type {
 			add_post_meta($post_id, $prefix.'city', $arrInput['custCity']);
 			add_post_meta($post_id, $prefix.'province', $arrInput['custProv']);
 			add_post_meta($post_id, $prefix.'postal_code', $arrInput['custCode']);
-			add_post_meta($post_id, $prefix.'order_summary', $arrInput['check_boards']);
+			add_post_meta($post_id, $prefix.'order_summary', 
+				wp_slash(self::boardArrayToText(json_decode(stripslashes($arrInput['check_boards']), true))));
 			add_post_meta($post_id, $prefix.'additional_comments', $arrInput['custComm']);
 
 			// Send Admin Email
@@ -135,6 +137,28 @@ class Order extends Cuztom_Post_type {
 		} else {
 			return false;
 		}
+	}
+
+	public static function boardArrayToText($arrBoards) {
+		$strReturn = '';
+
+		foreach ($arrBoards as $key => $board) {
+			$strReturn .= 'Board Number: ' . ($key + 1);
+			$strReturn .= '\\n===================\\n';
+			$strReturn .= 'Functionality: ' . $board['functionality'] . '\\n';
+
+			if($board['functionality'] == 'text') {
+				$strReturn .= 'Font: ' . $board['font'] . '\\n';
+				$strReturn .= 'Text: ' . $board['text'] . '\\n';
+			} elseif($board['functionality'] == 'accessory') {
+				$strReturn .= 'Type: ' . $board['accessory'] . '\\n';
+				$strReturn .= 'Quantity: ' . $board['quantity'] . '\\n';
+			}
+		}
+
+		$strReturn .= '\\n';
+
+		return $strReturn;
 	}
 
 	public static function numToEng($num){
