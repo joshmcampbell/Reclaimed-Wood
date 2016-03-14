@@ -77,6 +77,11 @@ $fields = array(
         'label'         => 'Order Summary',
         'type'          => 'textarea',
     ),
+    array(
+        'name'          => 'additional_comments',
+        'label'         => 'Additional Comments',
+        'type'          => 'textarea',
+    ),
 );
 
 // Create Metabox
