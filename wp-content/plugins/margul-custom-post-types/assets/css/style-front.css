@@ -157,11 +157,11 @@
 .has-error{
 	border: solid, black, 1px;
 }
-.btn-return{
-	background-color: #DB1A1A;
-}
-.btn-continue{
-	background-color: #B7C68B;
+.alert{
+	border-color: red !important;
+	border-width: thin !important;
+	background-color: #F08B8B !important;
+	text-align: center !important;
 }
 /*-- Extra Small --*/
 

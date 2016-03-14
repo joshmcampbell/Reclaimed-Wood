@@ -39,6 +39,10 @@
 					Address (line 2):
 					<input type="text" id="checkout-addr2"name="custAddr2" class="right alt-width" value="<?php echo ($objData->error) ? $objData->input['custAddr2'] : ''; ?>">
 				</div>
+				<div id="emailDiv" class="form-group order-div <?php echo (in_array('custProv', $objData->errors)) ? 'has-error' : ''; ?>">
+					Email*:
+					<input type="email" id="checkout-email" name="custEmail" class="right alt-width <?php echo (in_array('custEmail', $objData->errors)) ? 'has-error' : ''; ?>">
+				</div>
 				<div id="provinceDiv" class="form-group order-div <?php echo (in_array('custProv', $objData->errors)) ? 'has-error' : ''; ?>">
 					Province*:
 					<select name="custProv" id="checkout-province" class="form-control board-func right alt-width" data-id="0" value="<?php echo ($objData->error) ? $objData->input['custProv'] : ''; ?>">
@@ -70,7 +74,8 @@
 				<div class="form-group">
 					<input type="hidden" id="hidden-field-boards" name="board" value="<?php json_encode($_POST['boards']); ?>"/>
 				</div>
-                <div class="full-width" id="alertDiv">
+				<br>
+                <div class="full-width alert" id="alertDiv">
                 </div>
 				<div class="alt-width right">
 				<br>
