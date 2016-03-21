@@ -96,9 +96,6 @@ jQuery(document).ready(function($) {
 			var div = document.getElementById("alertDiv");
 			div.innerHTML += errorMsg;
 			div.style.border="solid";
-			div.addClass('alert');
-			div.style.class = 'alert';
-			div.className += ' alert';
 		}
 	});
 });

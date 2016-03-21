@@ -20,10 +20,10 @@
 				<h3>Order Summary</h3>
 				<?php echo Order::boardToEng($objData->boards); ?>
 			</div>
-			<form action="" method="POST">
+			<form class="form-inline" action="" method="POST">
 			Is there anything more specific you'd like to add?
 			<div class="form-group">
-				<textarea class="form-control" name="custComm" rows="4"><?php echo ($objData->error) ? $objData->input['custComm'] : ''; ?></textarea>
+				<textarea class="form-control half-width" name="custComm" rows="4"><?php echo ($objData->error) ? $objData->input['custComm'] : ''; ?></textarea>
 			</div>
 		</div>
 		<div>
@@ -34,18 +34,18 @@
 			</div>
 			<br>
 
-                <div class="form-group clearfix <?php echo (in_array('custName', $objData->errors)) ? 'has-error' : ''; ?>">
+                <div id="nameDiv" class="form-group clearfix <?php echo (in_array('custName', $objData->errors)) ? 'has-error' : ''; ?>">
 					<div class="row">
-						<div class="col-xs-12 col-sm-4">
+						<div class="form-group">
 							<label for="custName">Full Name <span class="req">*</span></label>
 						</div>
 						<div class="col-xs-12 col-sm-8">
-							<input type="text" name="custName" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custName'] : ''; ?>">
+							<input id="checkout-name" type="text" name="custName" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custName'] : ''; ?>">
 						</div>
 					</div>
 				</div>
 
-				<div class="form-group clearfix <?php echo (in_array('custEmail', $objData->errors)) ? 'has-error' : ''; ?>">
+				<div id="emailDiv" class="form-group clearfix <?php echo (in_array('custEmail', $objData->errors)) ? 'has-error' : ''; ?>">
 					<div class="row">
 						<div class="col-xs-12 col-sm-4">
 							<label for="custEmail">Email <span class="req">*</span></label>
@@ -56,24 +56,32 @@
 					</div>
 				</div>
 
-				<div class="form-group clearfix <?php echo (in_array('custAddr', $objData->errors)) ? 'has-error' : ''; ?>">
+				<div id="addressDiv" class="form-group clearfix <?php echo (in_array('custAddr', $objData->errors)) ? 'has-error' : ''; ?>">
 					<div class="row">
 						<div class="col-xs-12 col-sm-4">
 							<label for="custAddr">Address <span class="req">*</span></label>
 						</div>
+						<div class="col-xs-12 col-sm-8">	
+							<input id="checkout-address" type="text" name="custAddr" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custAddr'] : ''; ?>">
+						</div>
+					</div>
+				</div>
+				<div id="addressDiv2" class="form-group clearfix">
+					<div class="row">
+						<div class="col-xs-12 col-sm-4">
+							<label for="custAddr2">Address (line 2) </label>
+						</div>
 						<div class="col-xs-12 col-sm-8">
-							<input type="text" name="custAddr" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custAddr'] : ''; ?>">
+							<input id="checkout-address2" type="text" name="custAddr2" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custAddr'] : ''; ?>">
 						</div>
 					</div>
 				</div>
 
-				<div class="form-group clearfix <?php echo (in_array('custProv', $objData->errors)) ? 'has-error' : ''; ?>">
+				<div id="provinceDiv" class="form-group clearfix <?php echo (in_array('custProv', $objData->errors)) ? 'has-error' : ''; ?>">
 					<div class="row">
 						<div class="col-xs-12 col-sm-4">
 							<label for="custProv">Province <span class="req">*</span></label>
-						</div>
-						<div class="col-xs-12 col-sm-8">
-							<select name="custProv" class="form-control">
+							<select id="checkout-province" name="custProv" class="form-control">
 					       		<option>===Select Province===</option>  
 					      		<option value="Alberta" <?php echo ($objData->error && $objData->input['custProv'] == 'Alberta') ? 'selected' : ''; ?>>Alberta</option>
 					       		<option value="British Columbia"<?php echo ($objData->error && $objData->input['custProv'] == 'British Columbia') ? 'selected' : ''; ?>>British Columbia</option>
@@ -90,29 +98,29 @@
 					</div>
 				</div>
 
-				<div class="form-group clearfix <?php echo (in_array('custCity', $objData->errors)) ? 'has-error' : ''; ?>">
+				<div id="cityDiv" class="form-group clearfix <?php echo (in_array('custCity', $objData->errors)) ? 'has-error' : ''; ?>">
 					<div class="row">
 						<div class="col-xs-12 col-sm-4">
 							<label for="custCity">City <span class="req">*</span></label>
 						</div>
-						<div class="col-xs-12 col-sm-8">
-							<input type="text" name="custCity" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custCity'] : ''; ?>">
+						<div class="col-xs-12 col-sm-8">	
+							<input id="checkout-city" type="text" name="custCity" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custCity'] : ''; ?>">
 						</div>
 					</div>
 				</div>
 
-				<div class="form-group clearfix <?php echo (in_array('custCode', $objData->errors)) ? 'has-error' : ''; ?>">
+				<div id="postalDiv" class="form-group clearfix <?php echo (in_array('custCode', $objData->errors)) ? 'has-error' : ''; ?>">
 					<div class="row">
 						<div class="col-xs-12 col-sm-4">
 							<label for="custCode">Postal Code <span class="req">*</span></label>
 						</div>
-						<div class="col-xs-12 col-sm-8">
-							<input type="text" name="custCode" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custCode'] : ''; ?>">
+						<div class="col-xs-12 col-sm-8">	
+							<input id="checkout-postal" type="text" name="custCode" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custCode'] : ''; ?>">
 						</div>
 					</div>
 				</div>
 
-				<div class="form-group clearfix <?php echo (in_array('custNum', $objData->errors)) ? 'has-error' : ''; ?>">
+				<div id="phoneDiv" class="form-group clearfix <?php echo (in_array('custNum', $objData->errors)) ? 'has-error' : ''; ?>">
 					<div class="row">
 						<div class="col-xs-12 col-sm-4">
 							<label for="custNum">Phone Number</label>
