@@ -1,13 +1,11 @@
-
-
 <script type="text/javascript" src="/wp-content/plugins/margul-custom-post-types/assets/js/script-front.js">
 	function();
 </script>
 
-
 <?php 
 	$objData = Order::processForm();
 ?>
+
 <div class="row">
 	<div class="col-xs-12" >
 		<?php if($objData->error) { ?>
@@ -33,20 +31,17 @@
 				<font size="1"><i>* denotes required fields.</i></font>
 			</div>
 			<br>
-
                 <div id="nameDiv" class="form-group clearfix <?php echo (in_array('custName', $objData->errors)) ? 'has-error' : ''; ?>">
 					<div class="row">
-						<div class="form-group">
+						<div class="col-xs-12 col-sm-4">
 							<label for="custName">Full Name <span class="req">*</span></label>
 						</div>
 						<div class="col-xs-12 col-sm-8">
-							<input id="checkout-name" type="text" name="custName" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custName'] : ''; ?>">
+							<input type="text" name="custName" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custName'] : ''; ?>">
 						</div>
 					</div>
 				</div>
-
-				<div id="emailDiv" class="form-group clearfix <?php echo (in_array('custEmail', $objData->errors)) ? 'has-error' : ''; ?>">
-					<div class="row">
+				<div id="emailDiv" class="form-group clearfix <?php echo (in_array('custEmail', $objData->errors)) ? 'has-error' : ''; ?>"><div class="row">
 						<div class="col-xs-12 col-sm-4">
 							<label for="custEmail">Email <span class="req">*</span></label>
 						</div>
@@ -55,7 +50,6 @@
 						</div>
 					</div>
 				</div>
-
 				<div id="addressDiv" class="form-group clearfix <?php echo (in_array('custAddr', $objData->errors)) ? 'has-error' : ''; ?>">
 					<div class="row">
 						<div class="col-xs-12 col-sm-4">
@@ -76,11 +70,12 @@
 						</div>
 					</div>
 				</div>
-
-				<div id="provinceDiv" class="form-group clearfix <?php echo (in_array('custProv', $objData->errors)) ? 'has-error' : ''; ?>">
+				<div  class="form-group clearfix <?php echo (in_array('custProv', $objData->errors)) ? 'has-error' : ''; ?>">
 					<div class="row">
 						<div class="col-xs-12 col-sm-4">
 							<label for="custProv">Province <span class="req">*</span></label>
+						</div>
+						<div id="provinceDiv" class="col-xs-12 col-sm-8">
 							<select id="checkout-province" name="custProv" class="form-control">
 					       		<option>===Select Province===</option>  
 					      		<option value="Alberta" <?php echo ($objData->error && $objData->input['custProv'] == 'Alberta') ? 'selected' : ''; ?>>Alberta</option>
@@ -97,44 +92,37 @@
 						</div>
 					</div>
 				</div>
-
 				<div id="cityDiv" class="form-group clearfix <?php echo (in_array('custCity', $objData->errors)) ? 'has-error' : ''; ?>">
 					<div class="row">
 						<div class="col-xs-12 col-sm-4">
 							<label for="custCity">City <span class="req">*</span></label>
 						</div>
-						<div class="col-xs-12 col-sm-8">	
+						<div class="col-xs-12 col-sm-8">
 							<input id="checkout-city" type="text" name="custCity" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custCity'] : ''; ?>">
 						</div>
 					</div>
 				</div>
-
 				<div id="postalDiv" class="form-group clearfix <?php echo (in_array('custCode', $objData->errors)) ? 'has-error' : ''; ?>">
 					<div class="row">
 						<div class="col-xs-12 col-sm-4">
 							<label for="custCode">Postal Code <span class="req">*</span></label>
 						</div>
 						<div class="col-xs-12 col-sm-8">	
-							<input id="checkout-postal" type="text" name="custCode" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custCode'] : ''; ?>">
+							<input id="checkout-postal" maxlength="6" type="text" name="custCode" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custCode'] : ''; ?>">
 						</div>
 					</div>
 				</div>
-
 				<div id="phoneDiv" class="form-group clearfix <?php echo (in_array('custNum', $objData->errors)) ? 'has-error' : ''; ?>">
 					<div class="row">
 						<div class="col-xs-12 col-sm-4">
 							<label for="custNum">Phone Number</label>
 						</div>
 						<div class="col-xs-12 col-sm-8">
-							<input type="text" name="custNum" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custNum'] : ''; ?>">
+							<input id="checkout-phone" type="text" name="custNum" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custNum'] : ''; ?>">
 						</div>
 					</div>
 				</div>
-
 				<div class="form-group">
-				<br>
-                <div class="full-width alert" id="alertDiv">
-                </div>
 					<input type="hidden" name="check_boards" value='<?php echo json_encode($objData->boards); ?>'/>
 				</div>
 				<div class="alt-width right">

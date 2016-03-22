@@ -181,6 +181,27 @@
 	padding: 15px;
 	border-radius: 6px;
 	margin: 10px 0px;
+}
+.order-summary h3 {
+	margin: 0px 0px 5px 0px;
+}
+.order-div strong {
+	padding-top: 3px;
+}
+.order-summary {
+	padding: 10px;
+	border-radius: 6px;
+	border: 1px solid #bce8f1;
+	background-color: #d9edf7;
+	margin-bottom: 15px;
+}
+.alert-danger {
+	background-color: #f2dede;
+	border: 1px solid #ebccd1;
+	color: #a94442;
+	padding: 15px;
+	border-radius: 6px;
+	margin: 10px 0px;
 
 }
 .order-summary h3 {
