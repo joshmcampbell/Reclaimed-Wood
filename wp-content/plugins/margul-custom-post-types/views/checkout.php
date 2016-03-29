@@ -37,7 +37,7 @@
 							<label for="custName">Full Name <span class="req">*</span></label>
 						</div>
 						<div class="col-xs-12 col-sm-8">
-							<input type="text" name="custName" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custName'] : ''; ?>">
+							<input id="checkout-name" type="text" name="custName" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custName'] : ''; ?>">
 						</div>
 					</div>
 				</div>
@@ -46,7 +46,7 @@
 							<label for="custEmail">Email <span class="req">*</span></label>
 						</div>
 						<div class="col-xs-12 col-sm-8">
-							<input type="email" name="custEmail" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custEmail'] : ''; ?>">
+							<input type="email" id="checkout-email" name="custEmail" class="form-control" value="<?php echo ($objData->error) ? $objData->input['custEmail'] : ''; ?>">
 						</div>
 					</div>
 				</div>

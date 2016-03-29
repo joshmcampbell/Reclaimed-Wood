@@ -202,4 +202,5 @@ function getBoardBuilderDataAJAX() {
     echo json_encode(Board_Builder::getBoardData(26));
 
     exit();
-}
+} 
+?>
